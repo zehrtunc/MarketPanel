@@ -1,0 +1,27 @@
+﻿@model MarketPanel.Models.ViewModels.ProductViewModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form asp-action="Add" asp-controller="Product" method="post">
+        <div class="mb-3">
+            <label for="name" class="form-label">Ürün İsmi</label>
+            <input asp-for="Name" type="text" class="form-control" id="name">
+        </div>
+        <div class="mb-3">
+            <label for="price" class="form-label">Ürün Fiyatı</label>
+            <input asp-for="Price" type="text" class="form-control" id="price">
+        </div>
+        <div class="mb-3">
+            <label for="category" class="form-label">Ürün Kategorisi</label>
+            <input asp-for="CategoryId" type="text" class="form-control" id="category">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</body>
+</html>

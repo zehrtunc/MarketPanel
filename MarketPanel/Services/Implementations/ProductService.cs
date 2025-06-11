@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using MarketPanel.Data;
 using MarketPanel.Mapper;
 using MarketPanel.Models.Entities;
@@ -19,10 +20,16 @@ public class ProductService : IProductService
         _mapper = mapper;
     }
 
-    public async Task<List<Product>> GetAllAsync()
+    public async Task<List<ProductListViewModel>> GetAllAsync()
     {
-        var products = await _context.Products.ToListAsync();
-        return products;
+        var products = await _context.Products
+            //.Include(p => p.Category)
+            //.ProjectTo<ProductListViewModel>(_mapper.ConfigurationProvider)
+            .ToListAsync();
+
+        var modelList = _mapper.Map<List<ProductListViewModel>>(products); //tum modeller liste halinde oldugu icin
+
+        return modelList;
     }
 
     public async Task<Product> GetByIdAsync(long id)
@@ -55,7 +62,7 @@ public class ProductService : IProductService
 
         if (product == null) return false;
 
-        _mapper.Map(model, product); // from model to product (product.Name = model.Name)
+        _mapper.Map(model, product); // from model to product (product.Name = model.Name) Var olan nesnemin bilgilerini modelden gelen bilgiler ile guncelliyorum
 
         await _context.SaveChangesAsync();
 

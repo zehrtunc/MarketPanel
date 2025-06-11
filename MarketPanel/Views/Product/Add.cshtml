@@ -1,5 +1,9 @@
 ﻿@model MarketPanel.Models.ViewModels.ProductViewModel
 
+@{
+    Layout = null;
+}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,8 +22,10 @@
             <input asp-for="Price" type="text" class="form-control" id="price">
         </div>
         <div class="mb-3">
-            <label for="category" class="form-label">Ürün Kategorisi</label>
-            <input asp-for="CategoryId" type="text" class="form-control" id="category">
+            <label asp-for="CategoryId" class="form-label">Category</label>
+            <select asp-for="CategoryId" asp-items="Model.Categories" class="form-select">
+                <option value="">-- Select a category --</option>
+            </select>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>

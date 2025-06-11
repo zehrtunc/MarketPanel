@@ -25,6 +25,7 @@ public class ProductController : Controller
     public async Task<IActionResult> MyProducts()
     {
         var products = await _productService.GetAllAsync();
+
         return View(products);
     }
 
@@ -66,7 +67,7 @@ public class ProductController : Controller
             var result = await _productService.CreateAsync(product); // buradan boolean bir deger gelecek(servis metodu bool deger donecek)
             if (result) return RedirectToAction("MyProducts");
         }
-        catch(Exception ex)
+        catch(Exception)
         {
             ModelState.AddModelError("", "Ürün eklenirken bir hata oluştu");
         }
@@ -89,8 +90,53 @@ public class ProductController : Controller
 
         if (product == null) return NotFound();
 
-        
+        var model = _mapper.Map<ProductViewModel>(product);
+
+        model.Categories = _context.Categories.Select(c => new SelectListItem()
+        {
+            Value = c.Id.ToString(),
+            Text = c.Name
+        }).ToList();
+
+        return View(model);
     }
 
+    [HttpPost]
+    public async Task<IActionResult> Edit(ProductViewModel model)
+    {
+        if (!ModelState.IsValid)
+        {
+            model.Categories = _context.Categories.Select(c => new SelectListItem()
+            {
+                Value = c.Id.ToString(),
+                Text = c.Name
+            }).ToList();
 
+            return View(model);
+        }
+
+        var result = await _productService.UpdateAsync(model);
+
+        if (result) return RedirectToAction("MyProducts");
+
+        //Update sirasinda islem hata verirse ya da basarisiz olursa
+        //Update keraninda Categorylerin listelenerek gelebilmesi icin:
+
+        model.Categories = _context.Categories.Select(c => new SelectListItem()
+        {
+            Value = c.Id.ToString(),
+            Text = c.Name
+        }).ToList();
+
+        return View(model);
+
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> Delete(long id)
+    {
+        var result = _productService.DeleteAsync(id);
+
+        return RedirectToAction("MyProducts");
+    }
 }

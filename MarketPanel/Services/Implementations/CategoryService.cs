@@ -37,57 +37,37 @@ public class CategoryService : ICategoryService
 
     public async Task<bool> CreateAsync(Category category)
     {
-        try
-        {
-            await _context.Categories.AddAsync(category);
-            await _context.SaveChangesAsync();
+        await _context.Categories.AddAsync(category);
+        await _context.SaveChangesAsync();
 
-            return true;
-        }
-        catch
-        {
-            return false;
-        }
-
+        return true;
     }
 
     public async Task<bool> UpdateAsync(CategoryViewModel model)
     {
-        try
-        {
-            var category = await _context.Categories.FindAsync(model.Id);
-            if(category == null) throw new Exception("Güncellenmek istenilen kategori bulunamadı.");
 
-            _mapper.Map(model, category);
+        var category = await _context.Categories.FindAsync(model.Id);
+        if (category == null) throw new Exception("Güncellenmek istenilen kategori bulunamadı.");
 
-            await _context.SaveChangesAsync();
+        _mapper.Map(model, category);
 
-            return true;
-        }
-        catch
-        {
-            return false;
-        }
-        
+        await _context.SaveChangesAsync();
+
+        return true;
+
     }
 
     public async Task<bool> DeleteAsync(long id)
     {
-        try
-        {
-            var category = await _context.Categories.FindAsync(id);
 
-            if (category == null) throw new Exception("Silmek istenilen kategori bulunamadı.");
+        var category = await _context.Categories.FindAsync(id);
 
-            _context.Categories.Remove(category);
-            await _context.SaveChangesAsync();
+        if (category == null) throw new Exception("Silmek istenilen kategori bulunamadı.");
 
-            return true;
-        }
-        catch
-        {
-            return false;
-        }
-       
+        _context.Categories.Remove(category);
+        await _context.SaveChangesAsync();
+
+        return true;
+
     }
 }

@@ -26,6 +26,13 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link text-dark" href="/Category/MyCategories">Kategoriler</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="/Product/MyProducts">Ürünler</a>
+                        </li>
+
+                        <li class="nav-item">
                             <form id="logout-form" class="" method="post" asp-action="Logout" asp-controller="Account"></form>
                             <a href="javascript:void(0)" onclick="$('#logout-form').submit();" class="logout-link">
                                 <em class="icon ni ni-signout"></em><span>Sign out</span>

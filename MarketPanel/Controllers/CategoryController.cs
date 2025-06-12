@@ -73,7 +73,7 @@ public class CategoryController : Controller
         try
         {
             var result = await _categoryService.UpdateAsync(model);
-            if (result) return RedirectToAction("MyCatedories");
+            if (result) return RedirectToAction("MyCategories");
         }
         catch (Exception ex)
         {
@@ -84,6 +84,7 @@ public class CategoryController : Controller
         return View(model);
     }
 
+    [HttpPost]
     public async Task<IActionResult> Delete(long id)
     {
         try

@@ -15,6 +15,6 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityR
     public DbSet<ApplicationUser> Users { get; set; }
     public DbSet<Product> Products { get; set; }
     public DbSet<Category> Categories { get; set; }
-    public DbSet<SaleDocument> saleDocuments { get; set; }
-    public DbSet<SaleItem> saleItems { get; set; }
+    public DbSet<SaleDocument> SaleDocuments { get; set; }
+    public DbSet<SaleItem> SaleItems { get; set; }
 }

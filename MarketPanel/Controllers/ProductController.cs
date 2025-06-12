@@ -86,7 +86,7 @@ public class ProductController : Controller
     [HttpGet]
     public async Task<IActionResult> Edit(long id)
     {
-        var product = _productService.GetByIdAsync(id);
+        var product = await _productService.GetByIdAsync(id);
 
         if (product == null) return NotFound();
 
@@ -115,9 +115,17 @@ public class ProductController : Controller
             return View(model);
         }
 
-        var result = await _productService.UpdateAsync(model);
+        try
+        {
+            var result = await _productService.UpdateAsync(model);
 
-        if (result) return RedirectToAction("MyProducts");
+            if (result) return RedirectToAction("MyProducts");
+        }
+        catch(Exception)
+        {
+            ModelState.AddModelError("", "Ürün güncellenirken bir hata oluştu.");
+        }
+        
 
         //Update sirasinda islem hata verirse ya da basarisiz olursa
         //Update keraninda Categorylerin listelenerek gelebilmesi icin:
@@ -132,10 +140,19 @@ public class ProductController : Controller
 
     }
 
-    [HttpGet]
+    [HttpPost]
     public async Task<IActionResult> Delete(long id)
     {
-        var result = _productService.DeleteAsync(id);
+        try
+        {
+            var result = await _productService.DeleteAsync(id);
+
+            return RedirectToAction("MyProducts");
+        }
+        catch(Exception)
+        {
+            ModelState.AddModelError("", "Ürün silinirken bir hata oluştu.");
+        }
 
         return RedirectToAction("MyProducts");
     }

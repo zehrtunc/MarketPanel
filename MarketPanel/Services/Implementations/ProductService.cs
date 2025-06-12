@@ -5,6 +5,7 @@ using MarketPanel.Mapper;
 using MarketPanel.Models.Entities;
 using MarketPanel.Models.ViewModels;
 using MarketPanel.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 
 namespace MarketPanel.Services.Implementations;
@@ -42,7 +43,7 @@ public class ProductService : IProductService
 
     public async Task<bool> CreateAsync(Product product)
     {
-        try 
+        try
         {
             await _context.Products.AddAsync(product);
             await _context.SaveChangesAsync();
@@ -60,7 +61,7 @@ public class ProductService : IProductService
     {
         var product = await _context.Products.FindAsync(model.Id);
 
-        if (product == null) return false;
+        if (product == null) throw new Exception("Güncellenmek istenilen ürün bulunamadı.");
 
         _mapper.Map(model, product); // from model to product (product.Name = model.Name) Var olan nesnemin bilgilerini modelden gelen bilgiler ile guncelliyorum
 
@@ -72,11 +73,14 @@ public class ProductService : IProductService
 
     public async Task<bool> DeleteAsync(long id)
     {
+
         var product = await _context.Products.FindAsync(id);
-        if (product == null) return false;
+        if (product == null) throw new Exception("Silmek istenilen ürün bulunamadı.");
 
         _context.Products.Remove(product);
         await _context.SaveChangesAsync();
         return true;
+
+
     }
 }

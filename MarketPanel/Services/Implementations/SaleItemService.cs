@@ -19,9 +19,15 @@ public class SaleItemService : ISaleItemService
         _mapper = mapper;
     }
 
-    public decimal CalculateTotal()
+    public decimal CalculateTotal(SaleItemViewModel model)
     {
-        throw new NotImplementedException();
+        var subTotal = model.Quantity + model.UnitPrice;
+        var discounted = subTotal - model.Discount; // indirimli fiyat
+        var vatAmount = discounted * model.VATRate / 100; // KDV Tutari 
+
+        var total = Math.Round(discounted + vatAmount, 2); // 2 Ondalik basamakli sayi -> Math.Round(value, 2)
+
+        return total;
     }
 
     public async Task<List<SelectListItem>> GetProductsAsync()
@@ -60,6 +66,8 @@ public class SaleItemService : ISaleItemService
     public async Task<bool> CreateAsync(SaleItemViewModel model)
     {
         var saleItem = _mapper.Map<SaleItem>(model);
+        saleItem.Total = CalculateTotal(model); // DB`ye total deger yazilir
+
         await _context.SaleItems.AddAsync(saleItem);
         await _context.SaveChangesAsync();
 
@@ -73,6 +81,8 @@ public class SaleItemService : ISaleItemService
         if (saleItem == null) throw new Exception("Güncellemek istediğiniz satış bulunamadı.");
 
         _mapper.Map(model, saleItem);
+
+        saleItem.Total = CalculateTotal(model); // DB`ye total deger yazilir
 
         await _context.SaveChangesAsync();
 

@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 namespace MarketPanel.Services.Interfaces;
 public interface ISaleItemService
 {
-    decimal CalculateTotal();
+    decimal CalculateTotal(SaleItemViewModel model);
 
     Task<List<SelectListItem>> GetProductsAsync();
 

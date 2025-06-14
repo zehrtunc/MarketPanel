@@ -20,6 +20,9 @@ public class MappingProfile : Profile
 
         CreateMap<Category, CategoryViewModel>().ReverseMap();
 
+        CreateMap<SaleItem, SaleItemListViewModel>()
+            .ForMember(dest => dest.ProductName, opt => opt.MapFrom(src => src.Product.Name));
+
 
 
 

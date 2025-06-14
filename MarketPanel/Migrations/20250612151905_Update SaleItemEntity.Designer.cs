@@ -4,6 +4,7 @@ using MarketPanel.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MarketPanel.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250612151905_Update SaleItemEntity")]
+    partial class UpdateSaleItemEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -151,10 +154,6 @@ namespace MarketPanel.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("DocumentNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -164,6 +163,9 @@ namespace MarketPanel.Migrations
 
                     b.Property<decimal>("TotalAmount")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -188,7 +190,7 @@ namespace MarketPanel.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<long?>("SaleDocumentId")
+                    b.Property<long>("SaleDocumentId")
                         .HasColumnType("bigint");
 
                     b.Property<decimal>("Total")
@@ -366,7 +368,9 @@ namespace MarketPanel.Migrations
 
                     b.HasOne("MarketPanel.Models.Entities.SaleDocument", "SaleDocument")
                         .WithMany("SaleItems")
-                        .HasForeignKey("SaleDocumentId");
+                        .HasForeignKey("SaleDocumentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Product");
 

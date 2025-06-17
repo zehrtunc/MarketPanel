@@ -22,11 +22,19 @@ public class ProductController : Controller
         _context = context;
     }
 
+    [HttpGet]
     public async Task<IActionResult> MyProducts()
     {
         var products = await _productService.GetAllAsync();
 
         return View(products);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> Get(long id)
+    {
+        var product = await _productService.GetByIdAsync(id);
+        return Ok(new { success = true, price = product.Price });
     }
 
     [HttpGet]

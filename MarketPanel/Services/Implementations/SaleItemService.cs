@@ -21,7 +21,7 @@ public class SaleItemService : ISaleItemService
 
     public decimal CalculateTotal(SaleItemViewModel model)
     {
-        var subTotal = model.Quantity + model.UnitPrice;
+        var subTotal = model.Quantity * model.UnitPrice;
         var discounted = subTotal - model.Discount; // indirimli fiyat
         var vatAmount = discounted * model.VATRate / 100; // KDV Tutari 
 
@@ -66,7 +66,7 @@ public class SaleItemService : ISaleItemService
     public async Task<bool> CreateAsync(SaleItemViewModel model)
     {
         var saleItem = _mapper.Map<SaleItem>(model);
-        saleItem.Total = CalculateTotal(model); // DB`ye total deger yazilir
+        saleItem.Total = CalculateTotal(model); // DB`ye hesaplanilan total deger yazilir
 
         await _context.SaleItems.AddAsync(saleItem);
         await _context.SaveChangesAsync();

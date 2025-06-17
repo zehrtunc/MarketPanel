@@ -2,7 +2,6 @@
 using MarketPanel.Models.ViewModels;
 using MarketPanel.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Identity.Client;
 
 namespace MarketPanel.Controllers;
 
@@ -11,9 +10,11 @@ public class SaleItemController : Controller
     private readonly ISaleItemService _saleItemService;
 
 
+
     public SaleItemController(ISaleItemService saleItemService)
     {
         _saleItemService = saleItemService;
+
     }
     public async Task<IActionResult> MySaleItems()
     {
@@ -27,8 +28,9 @@ public class SaleItemController : Controller
         //Yeni bir model olustur ve modelin Products listesine veritabanindan Product nesnesinden cektigin listesini ata.
         var model = new SaleItemViewModel()
         {
-            Products = await _saleItemService.GetProductsAsync()
+            Products = await _saleItemService.GetProductsAsync(),
         };
+
         return View(model);
     }
 

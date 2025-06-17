@@ -12,19 +12,22 @@ public class MappingProfile : Profile
         CreateMap<ProductViewModel, Product>()  // Viewden alinan verinin DB`deki veriye  guncelleme yapmasi (ViewModel -> entity)
             .ForMember(dest => dest.Id, opt => opt.Ignore()); // Id korunur (Db deki mevcut entitiy uzerinde guncelleme yapabilmesi icin)
 
-        CreateMap<Product, ProductListViewModel>()
-            .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category.Name));
 
         CreateMap<ProductListViewModel, Product>();
+        CreateMap<Product, ProductListViewModel>()
+           .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category.Name));
 
 
         CreateMap<Category, CategoryViewModel>().ReverseMap();
 
+
+        CreateMap<SaleItemListViewModel, SaleItem>();
         CreateMap<SaleItem, SaleItemListViewModel>()
             .ForMember(dest => dest.ProductName, opt => opt.MapFrom(src => src.Product.Name));
 
-
-
+        CreateMap<SaleItemViewModel, SaleItem>().ReverseMap();
+        //CreateMap<SaleItem, SaleItemViewModel>()
+        //    .ForMember(dest => dest.UnitPrice, opt => opt.MapFrom(src => src.Product.Price));
 
     }
 

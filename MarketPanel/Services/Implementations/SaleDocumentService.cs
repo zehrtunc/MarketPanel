@@ -94,6 +94,14 @@ public class SaleDocumentService : ISaleDocumentService
     {
         var saleDocument = await _context.SaleDocuments.FindAsync(id);
 
+        //Evragi silmeden once iliskilerin kesilmesi gerek
+        //evrak silindiginde satislar uzerinde evrak id kayitli kaldigi icin evrak silinirken satislar uzerinde evragin id si kalabiliyor
+        //bu yuzden satis ile evrak arasinda iliski kesilirse satislar uzerindeki evrak idler null olur, kayit hata vermeden silinir.
+        foreach (var saleItems in saleDocument.SaleItems)
+        {
+            saleItems.SaleDocumentId = null;
+        }
+
         if (saleDocument == null) throw new Exception("Silmek istediğiniz satış evrağı bulunamadı.");
 
         _context.SaleDocuments.Remove(saleDocument);

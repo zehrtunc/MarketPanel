@@ -6,6 +6,11 @@ public interface ISaleDocumentService
 {
     Task<List<SaleDocumentListViewModel>> GetAllAsync();
 
-    Task<bool> CreateAsync(SaleDocumentAddViewModel model);
     Task<SaleDocumentViewModel> GetByIdAsync(long id);
+
+    Task<bool> CreateAsync(SaleDocumentAddViewModel model);
+
+    Task<bool> UpdateAsync(SaleDocumentViewModel model);
+
+    Task<bool> DeleteAsync(long id);
 }

@@ -37,7 +37,7 @@ public class MappingProfile : Profile
 
         CreateMap<SaleDocument, SaleDocumentListViewModel>();
 
-        CreateMap<SaleDocument, SaleDocumentViewModel>();
+        CreateMap<SaleDocument, SaleDocumentViewModel>().ReverseMap();
     }
 
 }

@@ -76,7 +76,7 @@ public class SaleItemService : ISaleItemService
 
     public async Task<bool> UpdateAsync(SaleItemViewModel model)
     {
-        var saleItem = await _context.SaleItems.FindAsync(model.Id);
+        var saleItem = await _context.SaleItems.FindAsync(model.Id); // Gelen veriyi Db`de eslesen kayydini bulma
 
         if (saleItem == null) throw new Exception("Güncellemek istediğiniz satış bulunamadı.");
 

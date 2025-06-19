@@ -39,11 +39,11 @@ namespace MarketPanel.Controllers
             try
             {
                 var result = await _saleDocumentService.CreateAsync(model);
-                if(result) return RedirectToAction("MySaleDocuments");
+                if (result) return RedirectToAction("MySaleDocuments");
             }
-            catch(Exception)
+            catch (Exception)
             {
-                ModelState.AddModelError("", "Satış evrağı oluşturulurken bir hata oluştu");
+                ModelState.AddModelError("", "Satış evrağı oluşturulurken bir hata oluştu.");
             }
 
             return View(model);
@@ -55,6 +55,40 @@ namespace MarketPanel.Controllers
             var model = await _saleDocumentService.GetByIdAsync(id);
 
             return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(SaleDocumentViewModel model)
+        {
+            if (!ModelState.IsValid) return View(model);
+
+            try
+            {
+                var result = await _saleDocumentService.UpdateAsync(model);
+                if (result) return RedirectToAction("MySaleDocuments");
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError("", "Satış evrağı güncellenirken bir hata oluştu.");
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(long id)
+        {
+            try
+            {
+                var result = await _saleDocumentService.DeleteAsync(id);
+                if (result) return RedirectToAction("MySaleDocuments");
+            }
+            catch(Exception)
+            {
+                ModelState.AddModelError("", "Satış evrağı silinirken bir hata oluştu.");
+            }
+
+            return RedirectToAction("MySaleDocuments");
         }
 
     }

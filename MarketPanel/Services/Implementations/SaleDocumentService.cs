@@ -5,6 +5,7 @@ using MarketPanel.Models.ViewModels;
 using MarketPanel.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Logging;
+using System.Security.Cryptography.Xml;
 
 namespace MarketPanel.Services.Implementations;
 
@@ -76,5 +77,28 @@ public class SaleDocumentService : ISaleDocumentService
         return true;
     }
 
-    
+    public async Task<bool> UpdateAsync(SaleDocumentViewModel model)
+    {
+        var saleDocument = await _context.SaleDocuments.FindAsync(model.Id); // View modeldan gelen verinin DB`de eslesen kaydini bulmak icin
+
+        if (saleDocument == null) throw new Exception("Güncellemek istediğiniz satış evrağı bulunamadı.");
+
+        _mapper.Map(model, saleDocument); // Viewmodelden gelen veriler ile Db`den gelen verileri mapleriz. yeni instance olusturulmadan
+
+        await _context.SaveChangesAsync();
+
+        return true;
+    }
+
+    public async Task<bool> DeleteAsync(long id)
+    {
+        var saleDocument = await _context.SaleDocuments.FindAsync(id);
+
+        if (saleDocument == null) throw new Exception("Silmek istediğiniz satış evrağı bulunamadı.");
+
+        _context.SaleDocuments.Remove(saleDocument);
+        await _context.SaveChangesAsync();
+
+        return true;
+    }
 }

@@ -6,49 +6,51 @@
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
 
+<form method="post" asp-action="Add" asp-controller="SaleDocument">
+    <div class="container mt-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2>Satışlarım</h2>
+            <a href="/SaleItem/Add" class="btn btn-success">+ Satış Ekle</a>
+        </div>
 
-<div class="container mt-4">
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <h2>Satışlarım</h2>
-        <a href="/SaleItem/Add" class="btn btn-success">+ Satış Ekle</a>
-    </div>
-
-    <table class="table table-bordered table-striped">
-        <thead class="table-light">
-            <tr>
-                <th style="width: 15%;">Ürün İsmi</th>
-                <th style="width: 15%;">Ürün Adedi</th>
-                <th style="width: 15%;">Birim Fiyatı</th>
-                <th style="width: 15%;">Kdv Oranı</th>
-                <th style="width: 15%;">İndirim</th>
-                <th style="width: 15%;">Ürünün Net Fiyatı</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var saleItem in Model)
-            {
+        <table class="table table-bordered table-striped">
+            <thead class="table-light">
                 <tr>
-                    <td>
-                        <input type="checkbox" name="selectedIds" value="@saleItem.Id" />
-                    </td>
-                    <td>@saleItem.ProductName</td>
-                    <td>@saleItem.Quantity</td>
-                    <td>@saleItem.UnitPrice.ToString("C")</td>
-                    <td>@saleItem.VATRate</td>
-                    <td>@saleItem.Discount</td>
-                    <td>@saleItem.Total.ToString("C")</td>
-                    <td>
-                        <a href="/SaleItem/Edit/@saleItem.Id" class="btn btn-warning">Düzenle</a>
-                    </td>
-                    <td>
-                        <form asp-action="Delete" asp-controller="SaleItem" method="post">
-                            <input type="hidden" value="@saleItem.Id" name="id" />
-                            <button type="submit" class="btn btn-danger">Sil</button>
-                        </form>
-                    </td>
+                    <th style="width: 15%;">Ürün İsmi</th>
+                    <th style="width: 15%;">Ürün Adedi</th>
+                    <th style="width: 15%;">Birim Fiyatı</th>
+                    <th style="width: 15%;">Kdv Oranı</th>
+                    <th style="width: 15%;">İndirim</th>
+                    <th style="width: 15%;">Ürünün Net Fiyatı</th>
                 </tr>
-            }
-        </tbody>
-    </table>
-    <a class="btn btn-danger"> + Satış Dökümanı Oluştur</a>
-</div>
+            </thead>
+            <tbody>
+                @foreach (var saleItem in Model)
+                {
+                    <tr>
+                        <td>
+                            <input type="checkbox" name="SaleItemIds" value="@saleItem.Id" />
+                        </td>
+                        <td>@saleItem.ProductName</td>
+                        <td>@saleItem.Quantity</td>
+                        <td>@saleItem.UnitPrice.ToString("C")</td>
+                        <td>@saleItem.VATRate</td>
+                        <td>@saleItem.Discount</td>
+                        <td>@saleItem.Total.ToString("C")</td>
+                        <td>
+                            <a href="/SaleItem/Edit/@saleItem.Id" class="btn btn-warning">Düzenle</a>
+                        </td>
+                        <td>
+                            <form asp-action="Delete" asp-controller="SaleItem" method="post">
+                                <input type="hidden" value="@saleItem.Id" name="id" />
+                                <button type="submit" class="btn btn-danger">Sil</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <button type="submit" class="btn btn-danger"> + Satış Dökümanı Oluştur</button>
+    </div>
+</form>
+

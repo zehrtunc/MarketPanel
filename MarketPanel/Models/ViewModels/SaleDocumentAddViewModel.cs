@@ -3,7 +3,6 @@
 public class SaleDocumentAddViewModel
 {
     public string Description { get; set; }
-    public List<SaleDocumentSalesListViewModel> SaleItems { get; set; } = new();
+    public List<long> SaleItemIds { get; set; } = new(); // baslangicta null degil bos liste olarak baslatilmasi icin
 }
-
 

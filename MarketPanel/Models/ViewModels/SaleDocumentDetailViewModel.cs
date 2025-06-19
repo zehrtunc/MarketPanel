@@ -1,6 +1,5 @@
-﻿namespace MarketPanel.Models.ViewModels
+﻿namespace MarketPanel.Models.ViewModels;
+
+public class SaleDocumentDetailViewModel
 {
-    public class SaleDocumentDetailViewModel
-    {
-    }
 }

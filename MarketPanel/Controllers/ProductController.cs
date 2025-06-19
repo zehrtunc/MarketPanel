@@ -40,7 +40,7 @@ public class ProductController : Controller
     [HttpGet]
     public IActionResult Add()
     {
-        var model = new ProductViewModel()
+        var model = new ProductViewModel
         {
             Categories = _context.Categories
                 .Select(c => new SelectListItem

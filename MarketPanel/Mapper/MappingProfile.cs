@@ -29,6 +29,15 @@ public class MappingProfile : Profile
         //CreateMap<SaleItem, SaleItemViewModel>()
         //    .ForMember(dest => dest.UnitPrice, opt => opt.MapFrom(src => src.Product.Price));
 
+        CreateMap<SaleDocumentAddViewModel, SaleDocument>()
+            .ForMember(dest => dest.TotalAmount, opt => opt.Ignore())
+            .ForMember(dest => dest.DocumentNumber , opt => opt.Ignore())
+            .ForMember(dest => dest.SaleItems, opt => opt.Ignore())
+            .ForMember(dest => dest.InsertDate, opt => opt.Ignore());
+
+        CreateMap<SaleDocument, SaleDocumentListViewModel>();
+
+        CreateMap<SaleDocument, SaleDocumentViewModel>();
     }
 
 }

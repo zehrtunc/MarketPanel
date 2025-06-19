@@ -19,5 +19,6 @@ public interface ISaleItemService
 
     Task<bool> UpdateAsync(SaleItemViewModel model);
     Task<bool> DeleteAsync(long id);
+
 }
 

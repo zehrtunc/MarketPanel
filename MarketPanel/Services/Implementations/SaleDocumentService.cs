@@ -27,18 +27,32 @@ public class SaleDocumentService : ISaleDocumentService
         return documentNumber;
     }
 
+    public async Task<List<SaleDocumentListViewModel>> GetAllAsync()
+    {
+        var saleDocuments = await _context.SaleDocuments.ToListAsync();
+
+        var models = _mapper.Map<List<SaleDocumentListViewModel>>(saleDocuments);
+
+        return models;
+    }
+
+    public async Task<SaleDocumentViewModel> GetByIdAsync(long id)
+    {
+        var saleDocument = await _context.SaleDocuments.FindAsync(id);
+
+        var model = _mapper.Map<SaleDocumentViewModel>(saleDocument);
+
+        return model;
+    }
+
     public async Task<bool> CreateAsync(SaleDocumentAddViewModel model)
     {
-        var selectedSaleItemIds = await _context.SaleItems
-            .Select(x => x.Id).ToListAsync();
-
         var saleItems = await _context.SaleItems
-            .Where(x => selectedSaleItemIds.Contains(x.Id) && x.SaleDocumentId == null) //SaleItem daha önce bir SaleDocument'a ait mi değil mi?
+            .Where(x => model.SaleItemIds.Contains(x.Id) && x.SaleDocumentId == null) //SaleItem daha önce bir SaleDocument'a ait mi değil mi?
             .ToListAsync();
 
-        if (saleItems == null) throw new Exception("Satış kalemleri alınamadı. Satışlar listesi null döndü.");
-
         if (!saleItems.Any()) throw new Exception("Seçilen satış kalemleri bulunamadı. Liste boş.");
+
 
         var totalAmount = saleItems.Sum(x => x.Total); // satislarin net ucretlerinin toplami
 
@@ -51,5 +65,16 @@ public class SaleDocumentService : ISaleDocumentService
 
         //her bir satiri iliskilendirebilmek icin foreach ile her birini donerek mapleyecegiz
 
+        foreach(var item in saleItems)
+        {
+            item.SaleDocument = saleDocument;
+        }
+
+        await _context.SaleDocuments.AddAsync(saleDocument);
+        await _context.SaveChangesAsync();
+
+        return true;
     }
+
+    
 }

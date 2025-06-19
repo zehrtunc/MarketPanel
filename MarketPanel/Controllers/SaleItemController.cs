@@ -26,7 +26,7 @@ public class SaleItemController : Controller
     public async Task<IActionResult> Add()
     {
         //Yeni bir model olustur ve modelin Products listesine veritabanindan Product nesnesinden cektigin listesini ata.
-        var model = new SaleItemViewModel()
+        var model = new SaleItemViewModel
         {
             Products = await _saleItemService.GetProductsAsync(),
         };

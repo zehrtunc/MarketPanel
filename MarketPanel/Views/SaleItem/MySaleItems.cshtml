@@ -27,29 +27,27 @@
             <tbody>
                 @foreach (var saleItem in Model)
                 {
-                    if (saleItem.SaleDocumentId == null)
-                    {
-                        <tr>
-                            <td>
-                                <input type="checkbox" name="SaleItemIds" value="@saleItem.Id" />
-                            </td>
-                            <td>@saleItem.ProductName</td>
-                            <td>@saleItem.Quantity</td>
-                            <td>@saleItem.UnitPrice.ToString("C")</td>
-                            <td>@saleItem.VATRate</td>
-                            <td>@saleItem.Discount</td>
-                            <td>@saleItem.Total.ToString("C")</td>
-                            <td>
-                                <a href="/SaleItem/Edit/@saleItem.Id" class="btn btn-warning">Düzenle</a>
-                            </td>
-                            <td>
-                                <form asp-action="Delete" asp-controller="SaleItem" method="post">
-                                    <input type="hidden" value="@saleItem.Id" name="id" />
-                                    <button type="submit" class="btn btn-danger">Sil</button>
-                                </form>
-                            </td>
-                        </tr>
-                    }
+                    <tr>
+                        <td>
+                            <input type="checkbox" name="SaleItemIds" value="@saleItem.Id" />
+                        </td>
+                        <td>@saleItem.ProductName</td>
+                        <td>@saleItem.Quantity</td>
+                        <td>@saleItem.UnitPrice.ToString("C")</td>
+                        <td>@saleItem.VATRate</td>
+                        <td>@saleItem.Discount</td>
+                        <td>@saleItem.Total.ToString("C")</td>
+                        <td>
+                            <a href="/SaleItem/Edit/@saleItem.Id" class="btn btn-warning">Düzenle</a>
+                        </td>
+                        <td>
+                            <form asp-action="Delete" asp-controller="SaleItem" method="post">
+                                <input type="hidden" value="@saleItem.Id" name="id" />
+                                <button type="submit" class="btn btn-danger">Sil</button>
+                            </form>
+                        </td>
+                    </tr>
+
 
                 }
             </tbody>

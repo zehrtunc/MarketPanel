@@ -43,7 +43,9 @@ public class SaleItemService : ISaleItemService
 
     public async Task<List<SaleItemListViewModel>> GetAllAsync()
     {
-        var saleItems = await _context.SaleItems.ToListAsync();
+        var saleItems = await _context.SaleItems
+            .Where(x => x.SaleDocumentId == null)
+            .ToListAsync();
 
         var models = _mapper.Map<List<SaleItemListViewModel>>(saleItems);
 

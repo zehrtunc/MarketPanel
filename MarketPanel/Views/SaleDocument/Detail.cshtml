@@ -1,0 +1,44 @@
+﻿@model MarketPanel.Models.ViewModels.SaleDocumentDetailViewModel
+
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Satış Evrak Detayı</h2>
+    </div>
+    <div class="card m-4">
+        <div class="card-body">
+            <p><strong>Evrak Numarası:</strong> @Model.DocumentNumber</p>
+            <p><strong>Açıklama:</strong> @Model.Description</p>
+            <p><strong>Oluşturulma Tarihi:</strong> @Model.InsertDate.ToString("dd.MM.yyyy HH:mm")</p>
+            <p><strong>Toplam Tutar:</strong> @Model.TotalAmount.ToString("C")</p>
+        </div>
+    </div>
+
+    <h4>Satışlar</h4>
+    <table class="table table-bordered table-striped">
+        <thead class="table-light">
+            <tr>
+                <th>Ürün</th>
+                <th>Adet</th>
+                <th>Toplam</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.SaleItems)
+            {
+                <tr>
+                    <td>@item.ProductName</td>
+                    <td>@item.Quantity</td>
+                    <td>@item.Total.ToString("C")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

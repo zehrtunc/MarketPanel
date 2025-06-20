@@ -13,4 +13,5 @@ public interface ISaleDocumentService
     Task<bool> UpdateAsync(SaleDocumentViewModel model);
 
     Task<bool> DeleteAsync(long id);
+    Task<SaleDocumentDetailViewModel> DetailAsync(long id);
 }

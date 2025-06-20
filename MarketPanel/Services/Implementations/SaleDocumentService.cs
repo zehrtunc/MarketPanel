@@ -109,4 +109,15 @@ public class SaleDocumentService : ISaleDocumentService
 
         return true;
     }
+
+    public async Task<SaleDocumentDetailViewModel> DetailAsync(long id)
+    {
+        var saleDocumnet = await _context.SaleDocuments.FindAsync(id);
+
+        if (saleDocumnet == null) throw new Exception("Satış evrağı bulunamadı.");
+
+        var model = _mapper.Map<SaleDocumentDetailViewModel>(saleDocumnet);
+
+        return model;
+    }
 }

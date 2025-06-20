@@ -8,6 +8,8 @@ public class SaleItemListViewModel
     public decimal VATRate { get; set; }
     public decimal Discount { get; set; }
     public decimal Total { get; set; } 
-    public string ProductName { get; set; } 
+    public string ProductName { get; set; }
+    public long? SaleDocumentId { get; set; }
+
 
 }

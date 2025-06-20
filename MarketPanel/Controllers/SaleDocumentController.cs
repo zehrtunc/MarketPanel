@@ -75,6 +75,14 @@ namespace MarketPanel.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Detail(long id)
+        {
+            var model = await _saleDocumentService.DetailAsync(id);
+
+            return View(model);
+        }
+
         [HttpPost]
         public async Task<IActionResult> Delete(long id)
         {

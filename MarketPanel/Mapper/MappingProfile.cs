@@ -38,6 +38,10 @@ public class MappingProfile : Profile
         CreateMap<SaleDocument, SaleDocumentListViewModel>();
 
         CreateMap<SaleDocument, SaleDocumentViewModel>().ReverseMap();
+
+        CreateMap<SaleDocument, SaleDocumentDetailViewModel>().ReverseMap();
+        CreateMap<SaleItem, SaleDocumentItemViewModel>().ReverseMap();
+
     }
 
 }

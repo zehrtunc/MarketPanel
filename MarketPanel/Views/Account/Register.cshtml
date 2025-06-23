@@ -4,42 +4,81 @@
     Layout = null;
 }
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Purple Admin</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="/Purple/assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="/Purple/assets/vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="/Purple/assets/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="/Purple/assets/vendors/font-awesome/css/font-awesome.min.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="/Purple/assets/css/style.css">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="/Purple/assets/images/favicon.png">
 </head>
 <body>
-    <div class="container my-auto">
-        <form asp-action="Register" asp-controller="Account" method="post" class="row">
-            <div class="mb-3 d-block col-6">
-                <label for="name" class="form-label">Name</label>
-                <input asp-for="Name" type="text" class="form-control" id="name">
+    <div class="container-scroller">
+        <div class="container-fluid page-body-wrapper full-page-wrapper">
+            <div class="content-wrapper d-flex align-items-center auth">
+                <div class="row flex-grow">
+                    <div class="col-lg-4 mx-auto">
+                        <div class="auth-form-light text-left p-5">
+                            <div class="brand-logo">
+                                <img src="/Purple/assets/images/logo.svg">
+                            </div>
+                            <h4>Buralarda yeni misin?</h4>
+                            <h6 class="font-weight-light">Buradaki basit adımları takip et</h6>
+                            <form class="pt-3">
+                                <div class="form-group">
+                                    <input asp-for="Name" type="text" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="İsim">
+                                </div>
+                                <div class="form-group">
+                                    <input asp-for="Surname" type="text" class="form-control form-control-lg" id="exampleInputSurname1" placeholder="Soyisim">
+                                </div>
+                                <div class="form-group">
+                                    <input asp-for="Email" type="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Email">
+                                </div>
+                                <div class="form-group">
+                                    <input asp-for="Password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Şifre">
+                                </div>
+                                <div class="mt-3 d-grid gap-2">
+                                    <button type="submit" class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn">Kayıt Ol</button>
+                                </div>
+                                <div class="text-center mt-4 font-weight-light">
+                                    Zaten bir hesabın var mı? <a href="/Account/Login" class="text-primary">Giriş</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="mb-3 col-6">
-                <label for="surname" class="form-label">Surname</label>
-                <input asp-for="Surname" type="text" class="form-control" id="surname">
-            </div>
-            <div class="mb-3 col-6">
-                <label for="email" class="form-label">Email address</label>
-                <input asp-for="Email" type="email" class="form-control" id="email" aria-describedby="emailHelp">
-                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-            </div>
-            <div class="mb-3 col-6">
-                <label for="password" class="form-label">Password</label>
-                <input asp-for="Password" type="password" class="form-control" id="password">
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-
-
-        </form>
+            <!-- content-wrapper ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
     </div>
-    
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="/Purple/assets/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="/Purple/assets/js/off-canvas.js"></script>
+    <script src="/Purple/assets/js/misc.js"></script>
+    <script src="/Purple/assets/js/settings.js"></script>
+    <script src="/Purple/assets/js/todolist.js"></script>
+    <script src="/Purple/assets/js/jquery.cookie.js"></script>
+    <!-- endinject -->
+
 </body>
 </html>

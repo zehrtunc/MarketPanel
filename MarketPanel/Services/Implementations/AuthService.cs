@@ -1,6 +1,7 @@
 ﻿using MarketPanel.Models.Entities;
 using MarketPanel.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
 
 namespace MarketPanel.Services.Implementations;
 

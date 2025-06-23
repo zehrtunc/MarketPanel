@@ -9,23 +9,21 @@
 
 
 
-<h2>Satış Evrağı Ekleme</h2>
-
-
-<div class="contaniner mt-4 my-auto mx-5">
-    <form asp-action="Add" asp-controller="SaleDocument" method="post" class="row">
-        <div class="mb-3 col-6">
+<div class="contaniner">
+    <h2>Satış Evrağı Ekleme</h2>
+    <form asp-action="Add" asp-controller="SaleDocument" method="post">
+        <div class="mb-3 col-3">
             <label for="description" class="form-label">Açıklama giriniz</label>
-            <input asp-for="Description" type="text" class="form-control" id="description">
+            <textarea asp-for="Description" type="text" class="form-control" id="description" rows="1" style="overflow:auto;"></textarea>
         </div>
-        <div class="mb-3 col-6">
-            
+        <div class="mb-3">
+
             @foreach (var id in Model.SaleItemIds)
             {
-                <input type="hidden" name="SaleItemIds" value="@id"/>
+                <input type="hidden" name="SaleItemIds" value="@id" />
             }
 
         </div>
-        <button type="submit" class="btn btn-primary  col-9">Ekle</button>
+        <button type="submit" class="btn btn-gradient-primary">Ekle</button>
     </form>
 </div>

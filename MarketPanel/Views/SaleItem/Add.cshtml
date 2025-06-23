@@ -8,35 +8,39 @@
 
 
 
-<h2>Satış Ekleme</h2>
 
 
-<div class="contaniner mt-4 my-auto mx-5">
-    <form asp-action="Add" asp-controller="SaleItem" method="post" class="row">
-        <div class="mb-3 col-6">
-            <label asp-for="ProductId" class="form-label">Ürün</label>
-            <select id="productId" asp-for="ProductId" asp-items="Model.Products" class="form-select">
-                <option value="">-- Select a product --</option>
-            </select>
-        </div>
-        <div class="mb-3 col-6">
-            <label for="quantity" class="form-label">Ürün Adedi</label>
-            <input asp-for="Quantity" type="text" class="form-control" id="quantity">
-        </div>
-        <div class="mb-3 col-6">
-            <label for="unitPrice" class="form-label">Ürünün Birim Fiyatı</label>
-            <input asp-for="UnitPrice" type="text" class="form-control" id="unitPrice">
-        </div>
-        <div class="mb-3 col-6">
-            <label for="vatRate" class="form-label">Kdv Oranı</label>
-            <input asp-for="VATRate" type="text" class="form-control" id="vatRate">
-        </div>
-        <div class="mb-3 col-6">
-            <label for="discount" class="form-label">Ürün İndirimi</label>
-            <input asp-for="Discount" type="text" class="form-control" id="discount">
-        </div>
-        <button type="submit" class="btn btn-primary  col-9">Ekle</button>
-    </form>
+
+<div class="contaniner d-flex justify-content-center">
+    <div class="card p-4 w-100" style="max-width: 600px;">
+        <h2>Satış Ekleme</h2>
+        <form asp-action="Add" asp-controller="SaleItem" method="post" class="row">
+            <div class="mb-3">
+                <label asp-for="ProductId" class="form-label">Ürün</label>
+                <select id="productId" asp-for="ProductId" asp-items="Model.Products" class="form-select">
+                    <option value="">-- Select a product --</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="quantity" class="form-label">Ürün Adedi</label>
+                <input asp-for="Quantity" type="text" class="form-control" id="quantity">
+            </div>
+            <div class="mb-3">
+                <label for="unitPrice" class="form-label">Ürünün Birim Fiyatı</label>
+                <input asp-for="UnitPrice" type="text" class="form-control" id="unitPrice">
+            </div>
+            <div class="mb-3">
+                <label for="vatRate" class="form-label">Kdv Oranı</label>
+                <input asp-for="VATRate" type="text" class="form-control" id="vatRate">
+            </div>
+            <div class="mb-3">
+                <label for="discount" class="form-label">Ürün İndirimi</label>
+                <input asp-for="Discount" type="text" class="form-control" id="discount">
+            </div>
+            <button type="submit" class="btn btn-gradient-primary w-100">Ekle</button>
+        </form>
+    </div>
+    
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

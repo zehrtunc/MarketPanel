@@ -25172,18 +25172,21 @@ dl li {
   font-size: 1.5rem;
   line-height: 48px;
   margin-right: 0;
-  padding: 0.25rem 0;
+  /*padding: 0.25rem 0;*/
   width: 100%;
   text-align: left;
-  padding-left: 2.25rem;
+  /*padding-left: 2.25rem;*/
 }
 .navbar .navbar-brand-wrapper .navbar-brand:active, .navbar .navbar-brand-wrapper .navbar-brand:focus, .navbar .navbar-brand-wrapper .navbar-brand:hover {
   color: #1b2658;
 }
+
 .navbar .navbar-brand-wrapper .navbar-brand img {
-  width: calc(260px - 120px);
+  width: 200;
   max-width: 100%;
-  height: 28px;
+  height: auto;
+  max-height: none;
+  display: block;
   margin: auto;
   vertical-align: middle;
 }
@@ -25193,7 +25196,7 @@ dl li {
 .navbar .navbar-brand-wrapper .navbar-brand.brand-logo-mini img {
   width: calc(70px - 50px);
   max-width: 100%;
-  height: 28px;
+  height: 70px;
   margin: auto;
 }
 .navbar .navbar-menu-wrapper {

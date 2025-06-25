@@ -1,12 +1,19 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MarketPanel.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
-namespace MarketPanel.Controllers
+namespace MarketPanel.Controllers;
+
+public class HomeController : Controller
 {
-    public class HomeController : Controller
+    private readonly IHomeService _homeService;
+
+    public HomeController(IHomeService homeService)
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+        _homeService = homeService;
+    }
+    public async Task<IActionResult> Index()
+    {
+        var model = await _homeService.GetDatasAsync();
+        return View(model);
     }
 }

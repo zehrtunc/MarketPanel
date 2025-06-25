@@ -1,5 +1,65 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model MarketPanel.Models.ViewModels.HomeViewModel
+
+
+    <div class="page-header">
+        <h3 class="page-title">
+            <span class="page-title-icon bg-gradient-primary text-white me-2">
+                <i class="mdi mdi-home"></i>
+            </span> Anasayfa
+        </h3>
+    </div>
+    <div class="row">
+        <div class="col-md-3 stretch-card grid-margin position-relative">
+            <div class="card bg-gradient-success card-img-holder text-white">
+                <div class="card-body">
+                    <img src="/Purple/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image">
+                    <h4 class="font-weight-normal ms-0 mb-3">
+                        Toplam Kategori Sayısı
+                    </h4>
+                    <i class="mdi mdi-label-multiple mdi-24px position-absolute" style="top: 40px; right: 20px;"></i>
+                    <h2 class="mb-5">@Model.CategoryCount</h2>
+                    <a class="btn btn-gradient-light d-flex justify-content-center" href="/Category/Add"><i class="mdi mdi-label-outline"></i>Kategori Ekle</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 stretch-card grid-margin">
+            <div class="card bg-gradient-info card-img-holder text-white">
+                <div class="card-body">
+                    <img src="/Purple/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image">
+                    <h4 class="font-weight-normal mb-3">
+                        Toplam Ürün Sayısı
+                        <i class="mdi mdi-bookmark-box-multiple mdi-24px float-end"></i>
+                    </h4>
+                    <h2 class="mb-5">@Model.ProductCount</h2>
+                    <a class="btn btn-gradient-light d-flex justify-content-center" href="/Product/Add"><i class="mdi mdi-package-variant"></i>Ürün Ekle</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 stretch-card grid-margin">
+            <div class="card bg-gradient-danger card-img-holder text-white">
+                <div class="card-body">
+                    <img src="/Purple/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image">
+                    <h4 class="font-weight-normal mb-3">
+                        Toplam Satış Sayısı
+                        <i class="mdi mdi-chart-line mdi-24px float-end"></i>
+                    </h4>
+                    <h2 class="mb-5">@Model.SaleItemCount</h2>
+                    <a class="btn btn-gradient-light d-flex justify-content-center" href="/SaleItem/Add"><i class="mdi mdi-cart"></i>Satış Ekle</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 stretch-card grid-margin">
+            <div class="card bg-gradient-primary card-img-holder text-white">
+                <div class="card-body">
+                    <img src="/Purple/assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image">
+                    <h4 class="font-weight-normal mb-3">
+                        Toplam Evrak Sayisi
+                        <i class="mdi mdi-chart-bar mdi-24px float-end"></i>
+                    </h4>
+                    <h2 class="mb-5">@Model.SaleDocumentCount</h2>
+                    <a class="btn btn-gradient-light d-flex justify-content-center" href="/SaleItem/MySaleItems"><i class="mdi mdi-file-document"></i>Evrak Oluştur</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
